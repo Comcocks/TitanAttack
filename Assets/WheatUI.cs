@@ -15,7 +15,7 @@ public class WheatUI : MonoBehaviour
         WheatStorage.Instance.OnWheatChanged -= UpdateText;
     }
 
-    private void UpdateText(int value)
+    private void UpdateText(float value)
     {
         valueText.text = "Wheat: " + value.ToString();
     }

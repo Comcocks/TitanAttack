@@ -12,7 +12,7 @@ public class FarmScript : MonoBehaviour
     {
         while (true)
         {
-            WheatStorage.Instance.EarnWheat(1);
+            WheatStorage.Instance.EarnWheat(1f);
 
             yield return new WaitForSeconds(1f);
         }

@@ -15,7 +15,7 @@ public class ResourceUI : MonoBehaviour
         ResourceStorage.Instance.OnResourceChanged -= UpdateText;
     }
 
-    private void UpdateText(int value)
+    private void UpdateText(float value)
     {
         valueText.text = "Resource: " + value.ToString();
     }

@@ -5,33 +5,34 @@ public sealed class ResourceStorage : MonoBehaviour
 {
     public static ResourceStorage Instance;
 
-    public event Action<int> OnResourceChanged;
+    public event Action<float> OnResourceChanged;
 
     [SerializeField]
-    private int currentResource;
+    private float currentResource;
 
     private void Awake()
     {
         Instance = this;
     }
 
-    public void SetupResource(int resource)
+    public void SetupResource(float resource)
     {
         this.currentResource = resource;
     }
 
-    public int GetResource()
+    public float GetResource()
     {
         return this.currentResource;
     }
 
-    public void EarnResource(int range)
+    public void EarnResource(float range)
     {
-        this.currentResource += range;
+        var clan = ClanManager.Instance.GetCivilian();
+        this.currentResource += range + range * clan.maxBouns * clan.strength / 10000;
         this.OnResourceChanged?.Invoke(this.currentResource);
     }
 
-    public void SpendResource(int range)
+    public void SpendResource(float range)
     {
         this.currentResource -= range;
         this.OnResourceChanged?.Invoke(this.currentResource);

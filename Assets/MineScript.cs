@@ -12,7 +12,7 @@ public class MineScript : MonoBehaviour
     {
         while (true)
         {
-            ResourceStorage.Instance.EarnResource(1);
+            ResourceStorage.Instance.EarnResource(1f);
 
             yield return new WaitForSeconds(2f);
         }

@@ -5,33 +5,34 @@ public sealed class WheatStorage : MonoBehaviour
 {
     public static WheatStorage Instance;
 
-    public event Action<int> OnWheatChanged;
+    public event Action<float> OnWheatChanged;
 
     [SerializeField]
-    private int currentWheat;
+    private float currentWheat;
 
     private void Awake()
     {
         Instance = this;
     }
 
-    public void SetupWheat(int wheat)
+    public void SetupWheat(float wheat)
     {
         this.currentWheat = wheat;
     }
 
-    public int GetWheat()
+    public float GetWheat()
     {
         return this.currentWheat;
     }
 
-    public void EarnWheat(int range)
+    public void EarnWheat(float range)
     {
-        this.currentWheat += range;
+        var clan = ClanManager.Instance.GetCivilian();
+        this.currentWheat += range + range * clan.maxBouns * clan.strength / 10000;
         this.OnWheatChanged?.Invoke(this.currentWheat);
     }
 
-    public void SpendWheat(int range)
+    public void SpendWheat(float range)
     {
         this.currentWheat -= range;
         this.OnWheatChanged?.Invoke(this.currentWheat);
